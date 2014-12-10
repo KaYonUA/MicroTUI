@@ -10,7 +10,7 @@ namespace MicroTUI
 			_g_widgCord.Y = WidgetCoord.Y + _w_Coord.Y + 1;
 
 			Color::Pixel _b_TranspP = buffer->Get(SB_NEWBUFFER, _g_widgCord.X, _g_widgCord.Y);
-			buffer->Label(_g_widgCord.X, _g_widgCord.Y, widgettitle, _b_TranspP.Color);
+			buffer->Label(_g_widgCord.X, _g_widgCord.Y, widgettitle == 0 ? _p_str->c_str() : widgettitle, _b_TranspP.Color);
 		}
 	}
 }

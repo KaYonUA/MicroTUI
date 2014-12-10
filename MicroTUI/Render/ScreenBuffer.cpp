@@ -214,6 +214,12 @@ namespace MicroTUI
 			NewBuffer.Set(Color::Pixel(str.at(l), cr), x + l, y);
 	}
 
+	void ScreenBuffer::Label(int x, int y, std::string *str, COLOR cr)
+	{
+		for (int l = 0; l < str->length(); l++)
+			NewBuffer.Set(Color::Pixel(str->at(l), cr), x + l, y);
+	}
+
 	void ScreenBuffer::ClearBuffer()
 	{
 		NewBuffer.Clear();

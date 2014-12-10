@@ -10,10 +10,15 @@ namespace MicroTUI
 			WidgetCoord.Y = yCoord;
 			WidgetSize.width = WidthWidget;
 			WidgetSize.height = HeightWidget;
-			widgettitle = new char[sizeof(str)];
-			int i; for (i = 0; *(str + i) != '\0'; i++)
-				*(widgettitle + i) = *(str + i);
-			*(widgettitle + i) = '\0';
+			if (str != 0)
+			{
+				widgettitle = new char[sizeof(str)];
+				int i; for (i = 0; *(str + i) != '\0'; i++)
+					*(widgettitle + i) = *(str + i);
+				*(widgettitle + i) = '\0';
+			}
+			else
+				widgettitle = 0;
 		}
 
 		void Widget::MoveWidget(int xCoord, int yCoord)

@@ -52,6 +52,7 @@ namespace MicroTUI
 		void Label(int x, int y, char l, COLOR cr);
 		void Label(int x, int y, const char *const str, unsigned int length, COLOR cr);
 		void Label(int x, int y, std::string str, COLOR cr);
+		void Label(int x, int y, std::string *str, COLOR cr);
 		~ScreenBuffer();
 	private:
 		COORD ScreenSize;

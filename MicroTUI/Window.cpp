@@ -50,13 +50,13 @@ namespace MicroTUI
 		{
 			char bgrLable;
 			bgrLable = ' ';
-			if (_p_onFocus == true)
+			if (_p_onFocus != true)
 				WindowBackground = WindowBackgroundF;
 			else
 				WindowBackground = WindowBackgroundN;
-			buffer->Rectangle(WindowCoord.X, WindowCoord.Y, WindowSize.width, WindowSize.height, Color::Pixel(bgrLable, WindowBackground));
 			buffer->Rectangle(WindowCoord.X + WindowSize.width, WindowCoord.Y + 1, 1, WindowSize.height, Color::Pixel(bgrLable, WinShadow));
 			buffer->Rectangle(WindowCoord.X + 1, WindowCoord.Y + WindowSize.height, WindowSize.width - 1, 1, Color::Pixel(bgrLable, WinShadow));
+			buffer->Rectangle(WindowCoord.X, WindowCoord.Y, WindowSize.width, WindowSize.height, Color::Pixel(bgrLable, WindowBackground));
 
 			int TitleLength =strlen(WindowTitle);
 			int LineLength = (WindowSize.width - TitleLength - 2) / 2;
@@ -66,7 +66,7 @@ namespace MicroTUI
 			buffer->LineHorisontal(WindowCoord.Y, WindowCoord.X + LineLength + 2 + TitleLength, WindowCoord.X + WindowSize.width,true, WindowBackground);
 
 			for (int it = 0; it < childWidgets.size(); it++)
-				childWidgets.at(it)->_Render_func(buffer);
+				childWidgets.at(it)->_Render_func(buffer,WindowCoord);
 		}
 
 

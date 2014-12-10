@@ -11,7 +11,7 @@ namespace MicroTUI
 			_Rendr.Connect(&__Screenbuffer);
 		}
 
-		void TUI::AddWindow(Window &window)
+		void TUI::AddWindow(Window *window)
 		{
 			windowsList.push_back(window);
 		}
@@ -21,13 +21,23 @@ namespace MicroTUI
 			__Screenbuffer.Fill(Color::Pixel(' ', BackgroundColor));
 			if (!windowsList.empty())
 			{
-				//if(windowsList.back().onFocus() == true)
-				for (std::list<Window>::iterator iterat = windowsList.begin(); iterat != windowsList.end(); iterat++)
-						iterat->_Render_func(&__Screenbuffer);
-				/*else
-				for (std::list<Window>::iterator iterat = windowsList.begin(); iterat != windowsList.end(); iterat++)
-				if (iterat->onFocus() == true)
-					windowsList.push_back(windowsList.erase(iterat));*/
+				//if (windowsList[windowsList.size()-1]->onFocus() == true)
+				for (int i = 0; i < windowsList.size(); i++)
+						windowsList[i]->_Render_func(&__Screenbuffer);
+				//else
+				//{
+				//	for (int i = windowsList.size()-1; i > 0; i--)
+				//		if (windowsList[i]->onFocus() == true)
+				//		{
+				//			/*Window *temp = windowsList[i];
+				//			windowsList.erase(windowsList.begin() + i);
+				//			windowsList.push_back(temp);*/
+				//			UpdateWindow();
+				//			return;
+				//		}
+				//	windowsList[0]->onFocus(true);
+				//	UpdateWindow();
+				//}
 			}
 		}
 

@@ -13,7 +13,7 @@ namespace MicroTUI
 			Widget(int xCoord, int yCoord, int WidthWidget, int HeightWidget, char * str = nullptr);
 			void MoveWidget(int xCoord, int yCoord);
 			void ResizeWidget(int WidthWidget, int HeightWidget);
-			virtual void _Render_func(ScreenBuffer*){};
+			virtual void _Render_func(ScreenBuffer*,COORD){};
 		protected:
 			mSIZE WidgetSize;
 			COORD WidgetCoord;

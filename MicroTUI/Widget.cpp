@@ -18,12 +18,14 @@ namespace MicroTUI
 
 		void Widget::MoveWidget(int xCoord, int yCoord)
 		{
-
+			WidgetCoord.X = xCoord;
+			WidgetCoord.Y = yCoord;
 		}
 
 		void Widget::ResizeWidget(int WidthWidget, int HeightWidget)
 		{
-
+			WidgetSize.width = WidthWidget;
+			WidgetSize.height = HeightWidget;
 		}
 	}
 }

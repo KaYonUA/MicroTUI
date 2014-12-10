@@ -5,7 +5,7 @@
 
 #include "Render\Render.h"
 #include "Window.h"
-#include <list>
+#include <vector>
 
 namespace MicroTUI
 {
@@ -15,7 +15,7 @@ namespace MicroTUI
 		{
 		public:
 			TUI();
-			void AddWindow(Window &window);
+			void AddWindow(Window *window);
 			void UpdateWindow();
 			void ShowWindow();
 			void _GetMessage();
@@ -26,7 +26,7 @@ namespace MicroTUI
 		private:
 			Render _Rendr;
 			ScreenBuffer __Screenbuffer;
-			std::list<Window> windowsList;
+			std::vector<Window*> windowsList;
 		};
 	}
 }

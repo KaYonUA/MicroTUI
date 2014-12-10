@@ -38,7 +38,7 @@ namespace MicroTUI
 		}
 
 
-		void Window::AddItem(Widget *widget)
+		void Window::AddWidget(Widget *widget)
 		{
 			/*widgetsList.push_back(*widget);*/
 			childWidgets.push_back(widget);

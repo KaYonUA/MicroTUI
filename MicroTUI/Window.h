@@ -16,7 +16,7 @@ namespace MicroTUI
 			Window(char * Title_, int xCoord, int yCoord, int WidthWindow, int HeightWindow);
 			void MoveWindow(int xCoord, int yCoord);
 			void ResizeWindow(int WidthWindow, int HeightWindow);
-			void AddItem(Widget *widget);
+			void AddWidget(Widget *widget);
 			bool onFocus();
 			void onFocus(bool Focused);
 			void _Render_func(ScreenBuffer *buffer);

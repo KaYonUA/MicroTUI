@@ -7,6 +7,7 @@
 #include "MicroTUI\TUI.h"
 #include "MicroTUI\GroupBox.h"
 #include "MicroTUI\Lable.h"
+#include "MicroTUI\ProgressBar.h"
 #include <conio.h>
 using namespace std;
 using namespace MicroTUI;
@@ -20,14 +21,16 @@ int main()
 	TUI screen;
 	int w = 35;
 	int h = 12;
-	string num; int _i_num=0;
+	string num = "0%"; int _i_num=0;
 	Window wind("KaYonUA", 6, 3, w, h);
 	Window windB("Bender", 6, 18, w, h);
 	GroupBox gb("Lubov P.", 2, 1, 18, 9);
-	Lable lab("Test :)", 7, 6);
+	Lable lab("Test :)", 14, 5);
 	Lable Ben("Bender The Best!!!",0,5);
-	Lable lab2(&num, 7, 5);
-	wind.AddWidget(&gb);
+	Lable lab2(&num, 29, 6);
+	ProgressBar PB(0, 6, 28, 1);
+	//wind.AddWidget(&gb);
+	wind.AddWidget(&PB);
 	wind.AddWidget(&lab2);
 	wind.AddWidget(&lab);
 	windB.AddWidget(&Ben);
@@ -39,12 +42,25 @@ int main()
 	{
 		switch (getch())
 		{
+		case 'o':
+			PB.SetProgress(--_i_num);
+			itoa(_i_num, temp, 10);
+			num = temp;
+			num += '%';
+			break;
+		case 'p':
+			PB.SetProgress(++_i_num);
+			itoa(_i_num, temp, 10);
+			num = temp;
+			num += '%';
+			break;
 		case 'q':
 			while (_i_num++ < 100)
 			{
 				itoa(_i_num, temp, 10);
 				num = temp;
 				num += '%';
+				PB.SetProgress(_i_num);
 				screen.UpdateWindow();
 				screen.ShowWindow();
 				Sleep(30);

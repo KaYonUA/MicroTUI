@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\MicroTUI\GroupBox.h" />
     <ClInclude Include="..\MicroTUI\Lable.h" />
+    <ClInclude Include="..\MicroTUI\ProgressBar.h" />
     <ClInclude Include="..\MicroTUI\Render\Buffer.h" />
     <ClInclude Include="..\MicroTUI\Render\Color.hpp" />
     <ClInclude Include="..\MicroTUI\Render\Cursor.h" />
@@ -27,6 +28,7 @@
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\MicroTUI\GroupBox.cpp" />
     <ClCompile Include="..\MicroTUI\Lable.cpp" />
+    <ClCompile Include="..\MicroTUI\ProgressBar.cpp" />
     <ClCompile Include="..\MicroTUI\Render\Buffer.cpp" />
     <ClCompile Include="..\MicroTUI\Render\Cursor.cpp" />
     <ClCompile Include="..\MicroTUI\Render\Render.cpp" />

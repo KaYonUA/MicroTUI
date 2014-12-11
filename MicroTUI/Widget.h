@@ -3,6 +3,7 @@
 #define WIDGET_H
 
 #include "Render\ScreenBuffer.h"
+
 namespace MicroTUI
 {
 	namespace GUI
@@ -15,6 +16,7 @@ namespace MicroTUI
 			void ResizeWidget(int WidthWidget, int HeightWidget);
 			virtual void _Render_func(ScreenBuffer*,COORD){};
 		protected:
+			bool _f_Enebled;
 			mSIZE WidgetSize;
 			COORD WidgetCoord;
 			char * widgettitle;

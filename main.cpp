@@ -1,4 +1,10 @@
-﻿#include "MicroTUI\TUI.h"
+﻿/*Examlpe for MicroTUI v0.1.47-beta
+  by Development KaYon`s Production
+  Time: 18:07
+  Date: 11.12.2014
+ */
+
+#include "MicroTUI\TUI.h"
 #include "MicroTUI\GroupBox.h"
 #include "MicroTUI\Lable.h"
 #include <conio.h>

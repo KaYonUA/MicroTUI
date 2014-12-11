@@ -18,16 +18,20 @@ int main()
 	system("title MicroTUI");
 	int x = 6, y = 3;
 	TUI screen;
-	int w = screen.Width() / 2 - 5;
-	int h = screen.Height() / 2 - 5;
+	int w = 35;
+	int h = 12;
 	string num; int _i_num=0;
-	Window wind("KaYonUA", 6, 3, screen.Width() / 2 - 5, screen.Height() / 2 - 5);
-	GroupBox gb("<Vlad>", 2, 1, 18, 9);
+	Window wind("KaYonUA", 6, 3, w, h);
+	Window windB("Bender", 6, 18, w, h);
+	GroupBox gb("Lubov P.", 2, 1, 18, 9);
 	Lable lab("Test :)", 7, 6);
+	Lable Ben("Bender The Best!!!",0,5);
 	Lable lab2(&num, 7, 5);
 	wind.AddWidget(&gb);
 	wind.AddWidget(&lab2);
 	wind.AddWidget(&lab);
+	windB.AddWidget(&Ben);
+	screen.AddWindow(&windB);
 	screen.AddWindow(&wind);
 
 	char temp[7];

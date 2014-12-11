@@ -5,7 +5,7 @@ namespace MicroTUI
 {
 	Render::Render()
 	{
-		curs.RestoreCursorAttributes(true);
+		curs.RestoreCursorAttributes(false);
 	}
 
 	Render::Render(ScreenBuffer *scrbuffer)

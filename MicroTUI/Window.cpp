@@ -102,7 +102,7 @@ namespace MicroTUI
 					_loc_coord.Y = WindowCoord.Y + 1;
 				}
 
-				for (int it = 0; it < childWidgets.size(); it++)
+				for (int it = 0; it < (int)childWidgets.size(); it++)
 					childWidgets.at(it)->_Render_func(buffer, _loc_coord);
 			}
 		}

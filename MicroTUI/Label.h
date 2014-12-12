@@ -10,17 +10,16 @@ namespace MicroTUI
 		class Label : public Widget
 		{
 		public:
-			Label(char * str, int xCoord, int yCoord)
-				: Widget(xCoord, yCoord, 0, 0, str), _f_isML(false){}
-			Label(std::string *str, int xCoord, int yCoord)
-				: Widget(xCoord, yCoord, 0, 0), _p_str(str), _f_isML(false){}
-			Label(char * str, int xCoord, int yCoord,int width,int height)
-				: Widget(xCoord, yCoord, width, height, str), _f_isML(true){}
-			Label(std::string *str, int xCoord, int yCoord, int width, int height)
-				: Widget(xCoord, yCoord, width, height), _p_str(str), _f_isML(true){}
+			Label(std::string str, int xCoord, int yCoord,int WidthWidget, int HeightWidget,bool multiline)
+				: Widget(xCoord, yCoord, WidthWidget,HeightWidget, str.c_str()), _f_isML(multiline),
+			L_colr(Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::White)){}
+			Label(std::string *str, int xCoord, int yCoord,int WidthWidget, int HeightWidget,bool multiline)
+				: Widget(xCoord, yCoord, WidthWidget, HeightWidget), _p_str(str),_f_isML(multiline),
+			L_colr(Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::White)){}
 			virtual void _Render_func(ScreenBuffer *buffer, COORD _w_Coord);
 		private:
 			std::string * _p_str;
+			COLOR L_colr;
 			bool _f_isML;
 		};
 	}

@@ -9,7 +9,7 @@
 #define SB_CURRENTBUFFER	0x0102
 #define IR_SAVE				0x0103
 #define IR_DONTSAVE			0x0104
-#define CGUI_ERROR			0xFFFFFFFF
+#define CGUI_ERROR			0xFFFF
 
 #define HS_LINE				0x00C4
 #define HD_LINE				0x00CD

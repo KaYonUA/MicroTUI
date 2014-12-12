@@ -102,9 +102,9 @@ namespace MicroTUI
 		COORD temp;
 		UpdateVector.clear();
 		//Test na ohibku..
-		for (size_t height = 0; height <= NBuffersSize.Y; height++)
+		for (SHORT height = 0; height <= NBuffersSize.Y; height++)
 		{
-			for (size_t width = 0; width <= NBuffersSize.X; width++)
+			for (SHORT width = 0; width <= NBuffersSize.X; width++)
 			if (NewBuffer.Get(width, height) != CurrentBuffer.Get(width, height))
 			{
 				temp.X = width; temp.Y = height;
@@ -144,8 +144,8 @@ namespace MicroTUI
 		COORD temp;
 		UpdateVector.clear();
 		//Test...
-		for (size_t height = 0; height < NBuffersSize.X; height++)
-		for (size_t width = 0; width < NBuffersSize.Y; width++)
+		for (SHORT height = 0; height < NBuffersSize.X; height++)
+		for (SHORT width = 0; width < NBuffersSize.Y; width++)
 		if (NewBuffer.Get(height, width) != CurrentBuffer.Get(height, width))
 		{
 			temp.X = height; temp.Y = width;
@@ -204,20 +204,23 @@ namespace MicroTUI
 
 	void ScreenBuffer::Lable(int x, int y, const char *const str, unsigned int length, COLOR cr)
 	{
-		for (int l = 0; l < length; l++)
-			NewBuffer.Set(Color::Pixel(str[l], cr), x + l, y);
+		for (unsigned int l = 0; l < length; l++)
+			if(str[l]!= '\0' && str[l] != '\n')
+				NewBuffer.Set(Color::Pixel(str[l], cr), x + l, y);
 	}
 
 	void ScreenBuffer::Lable(int x, int y, std::string str, COLOR cr)
 	{
-		for (int l = 0; l < str.length(); l++)
-			NewBuffer.Set(Color::Pixel(str.at(l), cr), x + l, y);
+		for (size_t l = 0; l < str.length(); l++)
+			if(str.at(l) != '\0' && str.at(l) != '\n')
+				NewBuffer.Set(Color::Pixel(str.at(l), cr), x + l, y);
 	}
 
 	void ScreenBuffer::Lable(int x, int y, std::string *str, COLOR cr)
 	{
-		for (int l = 0; l < str->length(); l++)
-			NewBuffer.Set(Color::Pixel(str->at(l), cr), x + l, y);
+		for (size_t l = 0; l < str->length(); l++)
+			if(str->at(l) != '\0' && str->at(l) != '\n')
+				NewBuffer.Set(Color::Pixel(str->at(l), cr), x + l, y);
 	}
 
 	void ScreenBuffer::ClearBuffer()

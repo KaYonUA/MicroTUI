@@ -22,7 +22,7 @@ namespace MicroTUI
 			if (!windowsList.empty())
 			{
 				//if (windowsList[windowsList.size()-1]->onFocus() == true)
-				for (int i = 0; i < windowsList.size(); i++)
+				for (int i = 0; i < (int)windowsList.size(); i++)
 						windowsList[i]->_Render_func(&__Screenbuffer);
 				//else
 				//{

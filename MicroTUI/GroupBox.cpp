@@ -13,14 +13,14 @@ namespace MicroTUI
 			
 			buffer->Set(SB_NEWBUFFER, _g_widgCord.X, _g_widgCord.Y, Color::Pixel((doub_lined == true ? TLD_CORNER : TLS_CORNER), Color::_Transparent));
 
-			if(widgettitle != 0)
+			if(widgettitle.empty())
 			{
 				int max_T_Size = WidgetSize.width - 4;
-				int _t_Length = strlen(widgettitle);
+				int _t_Length = widgettitle.size();
 				int _fl_length = WidgetSize.width - (5 + _t_Length);
 
 				buffer->Set(SB_NEWBUFFER, _g_widgCord.X + 1, _g_widgCord.Y, Color::Pixel((doub_lined == true ? HD_LINE : HS_LINE), Color::_Transparent));
-				buffer->Lable(_g_widgCord.X + 3, _g_widgCord.Y, widgettitle, _t_Length, Color::_Transparent);
+				buffer->Lable(_g_widgCord.X + 3, _g_widgCord.Y, widgettitle, Color::_Transparent);
 				buffer->LineHorisontal(_g_widgCord.Y, _g_widgCord.X + 3 + _t_Length + 1, _g_widgCord.X + WidgetSize.width, doub_lined, Color::_Transparent);
 			}
 			else

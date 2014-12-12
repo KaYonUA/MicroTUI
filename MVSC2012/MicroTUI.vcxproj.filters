@@ -21,9 +21,6 @@
     <ClCompile Include="..\MicroTUI\GroupBox.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\MicroTUI\Lable.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="..\MicroTUI\TUI.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -45,12 +42,15 @@
     <ClCompile Include="..\MicroTUI\Render\ScreenBuffer.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="..\MicroTUI\Label.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\ProgressBar.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\MicroTUI\GroupBox.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\Lable.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="..\MicroTUI\TUI.h">
@@ -78,6 +78,12 @@
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="..\MicroTUI\Render\Size.hpp">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\Label.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\ProgressBar.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

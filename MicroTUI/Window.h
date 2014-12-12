@@ -17,7 +17,7 @@ namespace MicroTUI
 		const BYTE W_ONTOP = 16;
 
 
-		inline bool BitChecked(BYTE _pws_mem, unsigned _b_count){ return (bool)(_pws_mem & (1 << _b_count)); }
+		inline bool BitChecked(BYTE _pws_mem, unsigned _b_count){ return (_pws_mem & (1 << _b_count)) != 0; }
 
 		class Window
 		{

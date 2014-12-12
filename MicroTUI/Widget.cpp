@@ -4,7 +4,7 @@ namespace MicroTUI
 {
 	namespace GUI
 	{
-		Widget::Widget(int xCoord, int yCoord, int WidthWidget, int HeightWidget, char * str)
+		Widget::Widget(int xCoord, int yCoord, int WidthWidget, int HeightWidget,const char * str)
 		{
 			WidgetCoord.X = xCoord;
 			WidgetCoord.Y = yCoord;
@@ -12,13 +12,11 @@ namespace MicroTUI
 			WidgetSize.height = HeightWidget;
 			if (str != 0)
 			{
-				widgettitle = new char[sizeof(str)];
-				int i; for (i = 0; *(str + i) != '\0'; i++)
-					*(widgettitle + i) = *(str + i);
-				*(widgettitle + i) = '\0';
+				widgettitle = str;
 			}
 			else
-				widgettitle = 0;
+				widgettitle.clear();
+			
 		}
 
 		void Widget::MoveWidget(int xCoord, int yCoord)

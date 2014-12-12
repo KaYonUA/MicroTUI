@@ -8,12 +8,10 @@ namespace MicroTUI
 		{
 			COORD _g_widgCord; _g_widgCord.X = WidgetCoord.X + _w_Coord.X;
 			_g_widgCord.Y = WidgetCoord.Y + _w_Coord.Y;
-
-			
 			
 			buffer->Set(SB_NEWBUFFER, _g_widgCord.X, _g_widgCord.Y, Color::Pixel((doub_lined == true ? TLD_CORNER : TLS_CORNER), Color::_Transparent));
 
-			if(widgettitle.empty())
+			if(widgettitle.empty()==false)
 			{
 				int max_T_Size = WidgetSize.width - 4;
 				int _t_Length = widgettitle.size();

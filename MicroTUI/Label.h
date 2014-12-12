@@ -17,9 +17,10 @@ namespace MicroTUI
 				: Widget(xCoord, yCoord, WidthWidget, HeightWidget), _p_str(str),_f_isML(multiline),
 			L_colr(Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::White)){}
 			virtual void _Render_func(ScreenBuffer *buffer, COORD _w_Coord);
+
+			COLOR L_colr;
 		private:
 			std::string * _p_str;
-			COLOR L_colr;
 			bool _f_isML;
 		};
 	}

@@ -23,6 +23,14 @@
 #define BLD_CORNER			0x00C8
 #define BRS_CORNER			0x00D9
 #define BRD_CORNER			0x00BC
+#define BRDtS_CORNER		0x00BD
+#define BLDtS_CORNER		0x00D4
+#define TRDtS_CORNER		0x00B8
+#define TLDtS_CORNER		0x00D6
+#define BRStD_CORNER		0x00BE
+#define BLStD_CORNER		0x00D3
+#define TRStD_CORNER		0x00B7
+#define TLStD_CORNER		0x00D5
 
 namespace MicroTUI
 {
@@ -48,11 +56,11 @@ namespace MicroTUI
 
 		void Rectangle(int x, int y, int width, int height, Color::Pixel Pix);
 		void LineHorisontal(int y, int Sx, int Ex, bool isDouble, COLOR cr);
-		void LineVertical(int y, int Sx, int Ex, bool isDouble, COLOR cr);
-		void Label(int x, int y, char l, COLOR cr);
-		void Label(int x, int y, const char *const str, unsigned int length, COLOR cr);
-		void Label(int x, int y, std::string str, COLOR cr);
-		void Label(int x, int y, std::string *str, COLOR cr);
+		void LineVertical(int x, int Sy, int Ey, bool isDouble, COLOR cr);
+		void Lable(int x, int y, char l, COLOR cr);
+		void Lable(int x, int y, const char *const str, unsigned int length, COLOR cr);
+		void Lable(int x, int y, std::string str, COLOR cr);
+		void Lable(int x, int y, std::string *str, COLOR cr);
 		~ScreenBuffer();
 	private:
 		COORD ScreenSize;

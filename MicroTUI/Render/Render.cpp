@@ -6,6 +6,10 @@ namespace MicroTUI
 	Render::Render()
 	{
 		curs.RestoreCursorAttributes(false);
+		CONSOLE_CURSOR_INFO structCursorInfo;
+		GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &structCursorInfo);
+		structCursorInfo.bVisible = FALSE;
+		SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &structCursorInfo);
 	}
 
 	Render::Render(ScreenBuffer *scrbuffer)
@@ -35,6 +39,8 @@ namespace MicroTUI
 			curs.Print(width, height, ScrBuff->Get(SB_NEWBUFFER, width, height));
 			//Sleep(50);
 		}
+		size.X = 0; size.Y = 0;
+		curs.SetCoord(size);
 	}
 
 	void Render::UpdateAll()
@@ -55,10 +61,6 @@ namespace MicroTUI
 		ScrBuff->ClearScreen();
 		UpdateAll();
 	}
-
-
-	
-
 
 	Render::~Render()
 	{

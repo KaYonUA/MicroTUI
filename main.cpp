@@ -1,7 +1,7 @@
-﻿/*Examlpe for MicroTUI v0.1.47-beta
+﻿/*Examlpe for MicroTUI v0.1.59-beta18
   by Development KaYon`s Production
-  Time: 18:07
-  Date: 11.12.2014
+  Time: 11:44
+  Date: 12.12.2014
  */
 
 #include "MicroTUI\TUI.h"
@@ -16,23 +16,29 @@ using Color::Pixel;
 
 int main()
 {
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO structCursorInfo;
+	GetConsoleCursorInfo(handle, &structCursorInfo);
+	structCursorInfo.bVisible = FALSE;
+	SetConsoleCursorInfo(handle, &structCursorInfo);
 	system("title MicroTUI");
 	int x = 6, y = 3;
 	TUI screen;
 	int w = 35;
 	int h = 12;
 	string num = "0%"; int _i_num=0;
-	Window wind("KaYonUA", 6, 3, w, h);
-	Window windB("Bender", 6, 18, w, h);
-	GroupBox gb("Lubov P.", 2, 1, 18, 9);
+	Window wind("KaYonUA", 6, 3, w, h, W_ONTOP  | W_VISIBLE| W_BORDERED);
+	Window windB("Bender", 6, 18, w, h, W_ONTOP | W_SHADOW | W_VISIBLE);
+	GroupBox gb("Gummer", 11, 2, 12, 6);
 	Lable lab("Test :)", 14, 5);
-	Lable Ben("Bender The Best!!!",0,5);
-	Lable lab2(&num, 29, 6);
-	ProgressBar PB(0, 6, 28, 1);
+	Lable Ben("Bender The Best!!!",0,0);
+	Lable lab2(&num, 29, 0);
+	ProgressBar PB(0, 0, 29, 1);
 	//wind.AddWidget(&gb);
 	wind.AddWidget(&PB);
 	wind.AddWidget(&lab2);
 	wind.AddWidget(&lab);
+	wind.AddWidget(&gb);
 	windB.AddWidget(&Ben);
 	screen.AddWindow(&windB);
 	screen.AddWindow(&wind);

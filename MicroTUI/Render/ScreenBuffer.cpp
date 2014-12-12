@@ -135,7 +135,7 @@ namespace MicroTUI
 		GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &temp);
 		mSIZE returned;
 		returned.width = temp.srWindow.Right+1;
-		returned.height = temp.srWindow.Bottom;
+		returned.height = temp.srWindow.Bottom+1;
 		return returned;
 	}
 
@@ -197,24 +197,24 @@ namespace MicroTUI
 				NewBuffer.Set(Color::Pixel(isDouble == true ? VD_LINE : VS_LINE, cr),x, Sy + y);
 	}
 
-	void ScreenBuffer::Label(int x, int y, char l, COLOR cr)
+	void ScreenBuffer::Lable(int x, int y, char l, COLOR cr)
 	{
 		NewBuffer.Set(Color::Pixel(l, cr), x, y);
 	}
 
-	void ScreenBuffer::Label(int x, int y, const char *const str,unsigned int length, COLOR cr)
+	void ScreenBuffer::Lable(int x, int y, const char *const str, unsigned int length, COLOR cr)
 	{
 		for (int l = 0; l < length; l++)
 			NewBuffer.Set(Color::Pixel(str[l], cr), x + l, y);
 	}
 
-	void ScreenBuffer::Label(int x, int y, std::string str, COLOR cr)
+	void ScreenBuffer::Lable(int x, int y, std::string str, COLOR cr)
 	{
 		for (int l = 0; l < str.length(); l++)
 			NewBuffer.Set(Color::Pixel(str.at(l), cr), x + l, y);
 	}
 
-	void ScreenBuffer::Label(int x, int y, std::string *str, COLOR cr)
+	void ScreenBuffer::Lable(int x, int y, std::string *str, COLOR cr)
 	{
 		for (int l = 0; l < str->length(); l++)
 			NewBuffer.Set(Color::Pixel(str->at(l), cr), x + l, y);

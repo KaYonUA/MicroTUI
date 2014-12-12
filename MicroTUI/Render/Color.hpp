@@ -8,9 +8,10 @@
 namespace MicroTUI
 {
 	typedef char LETTER;
-	typedef WORD COLOR;
+	typedef unsigned short COLOR;
 	namespace Color
 	{
+		const COLOR _Transparent = 999;
 		struct Pixel
 		{
 			enum ConsoleColor

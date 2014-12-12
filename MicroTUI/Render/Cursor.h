@@ -19,11 +19,11 @@ namespace MicroTUI
 		void Print(char *LPletter, int x, int y, Color::Pixel::ConsoleColor TextColor = Color::Pixel::White, Color::Pixel::ConsoleColor BackgroundColor = Color::Pixel::Black);
 		void Print(int x, int y, Color::Pixel attrib);
 		void GetPos(COORD *coord);
+		void SetCoord(COORD coord);
 		void RestoreCursorAttributes(bool RCA);
 	private:
 		void SetColor(Color::Pixel::ConsoleColor TextColor, Color::Pixel::ConsoleColor BackgroundColor);
 		void SetColor(WORD Color);
-		void SetCoord(COORD coord);
 		void SaveCurAttr();
 		void RestoreCurAttr();
 

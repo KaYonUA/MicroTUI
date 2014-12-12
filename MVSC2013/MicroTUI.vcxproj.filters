@@ -45,10 +45,10 @@
     <ClInclude Include="..\MicroTUI\Render\Buffer.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="..\MicroTUI\Lable.h">
+    <ClInclude Include="..\MicroTUI\ProgressBar.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="..\MicroTUI\ProgressBar.h">
+    <ClInclude Include="..\MicroTUI\Label.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
@@ -80,10 +80,10 @@
     <ClCompile Include="..\main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\MicroTUI\Lable.cpp">
+    <ClCompile Include="..\MicroTUI\ProgressBar.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\MicroTUI\ProgressBar.cpp">
+    <ClCompile Include="..\MicroTUI\Label.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

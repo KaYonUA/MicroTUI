@@ -18,11 +18,12 @@ namespace MicroTUI
 				step(100.0f / WidthWidget), _cr_progress(0){}
 			void _Render_func(ScreenBuffer *_scr_buf, COORD _wnd_coord);
 			void SetProgress(int progr);
+
+			COLOR _def_Color;
+			COLOR _bg_Color;
 		private:
 			double step;
 			int _cr_progress;
-			COLOR _def_Color;
-			COLOR _bg_Color;
 		};
 	}
 }

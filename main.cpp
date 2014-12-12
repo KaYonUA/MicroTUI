@@ -6,7 +6,7 @@
 
 #include "MicroTUI\TUI.h"
 #include "MicroTUI\GroupBox.h"
-#include "MicroTUI\Lable.h"
+#include "MicroTUI\Label.h"
 #include "MicroTUI\ProgressBar.h"
 #include <conio.h>
 using namespace std;
@@ -16,30 +16,24 @@ using Color::Pixel;
 
 int main()
 {
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_CURSOR_INFO structCursorInfo;
-	GetConsoleCursorInfo(handle, &structCursorInfo);
-	structCursorInfo.bVisible = FALSE;
-	SetConsoleCursorInfo(handle, &structCursorInfo);
 	system("title MicroTUI");
+	COLOR Grey = Pixel::ColorToWord(Pixel::Black, Pixel::LightGray);
+	COLOR Green = Pixel::ColorToWord(Pixel::Black, Pixel::Green);
+	COLOR White = Pixel::ColorToWord(Pixel::Black, Pixel::White);
 	int x = 6, y = 3;
 	TUI screen;
 	int w = 35;
 	int h = 12;
 	string num = "0%"; int _i_num=0;
-	Window wind("KaYonUA", 6, 3, w, h, W_ONTOP  | W_VISIBLE| W_BORDERED);
-	Window windB("Bender", 6, 18, w, h, W_ONTOP | W_SHADOW | W_VISIBLE);
-	GroupBox gb("Gummer", 11, 2, 12, 6);
-	Lable lab("Test :)", 14, 5);
-	Lable Ben("Bender The Best!!!",0,0);
-	Lable lab2(&num, 29, 0);
-	ProgressBar PB(0, 0, 29, 1);
+	Window wind("MicroTUI", 6, 3, w, h, W_ONTOP  | W_VISIBLE| W_BORDERED);
+	Window windB("Bender", 6, 18, w, h, W_ONTOP | W_VISIBLE | W_MAXIMIZED);
+	GroupBox gb("Progress", 2, 3, 28, 4);
+	Label lab2(&num, 25, 5);
+	ProgressBar PB(4, 5, 20, 1);
 	//wind.AddWidget(&gb);
 	wind.AddWidget(&PB);
 	wind.AddWidget(&lab2);
-	wind.AddWidget(&lab);
 	wind.AddWidget(&gb);
-	windB.AddWidget(&Ben);
 	screen.AddWindow(&windB);
 	screen.AddWindow(&wind);
 

@@ -3,19 +3,6 @@
 
 namespace MicroTUI
 {
-	Render::Render()
-	{
-		curs.RestoreCursorAttributes(false);
-		CONSOLE_CURSOR_INFO structCursorInfo;
-		GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &structCursorInfo);
-		structCursorInfo.bVisible = FALSE;
-		SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &structCursorInfo);
-	}
-
-	Render::Render(ScreenBuffer *scrbuffer)
-	{
-		ScrBuff = scrbuffer;
-	}
 	void Render::Connect(ScreenBuffer *scrbuffer)
 	{
 		ScrBuff = scrbuffer;
@@ -33,14 +20,17 @@ namespace MicroTUI
 	{
 		COORD size = ScrBuff->GetBuffersSize(SB_NEWBUFFER);
 		for (size_t height = 0; height < size.Y; height++)
-		for (size_t width = 0; width < size.X; width++)
-		if (ScrBuff->PixelChanged(width, height))
 		{
-			curs.Print(width, height, ScrBuff->Get(SB_NEWBUFFER, width, height));
-			//Sleep(50);
+			for (size_t width = 0; width < size.X; width++)
+				if (ScrBuff->PixelChanged(width, height))
+				{
+					curs.Print(width, height, ScrBuff->Get(SB_NEWBUFFER, width, height));
+					//Sleep(50);
+				}
+
 		}
-		size.X = 0; size.Y = 0;
-		curs.SetCoord(size);
+		COORD null = {0,0};
+		curs.SetCoord(null);
 	}
 
 	void Render::UpdateAll()

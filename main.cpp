@@ -59,6 +59,8 @@ int main()
 	/*Updating (Render in buffer) and Show on screen*/
 	gui.UpdateWindow();
 	gui.ShowWindow();
+	gui.ShowWindow();
+	gui.ShowWindow();
 
 	getch();
 

@@ -3,10 +3,9 @@
 
 namespace MicroTUI
 {
-	Cursor::Cursor(std::ostream &initOstream)
+	Cursor::Cursor()
 	{
-		hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-		outStream = &initOstream;
+		outStream = &std::cout;
 		oldTextAtrr.Color = (WORD)((Color::Pixel::Black << 4) | Color::Pixel::White);
 		oldTextAtrr.TextCoord.X = 0;
 		oldTextAtrr.TextCoord.Y = 0;
@@ -47,9 +46,7 @@ namespace MicroTUI
 		COORD cord;
 		cord.X = x;
 		cord.Y = y;
-		SetConsoleCursorPosition(hStdOut, cord);
 		SetColor(TextColor, BackgroundColor);
-		*outStream << letter;
 		if (_Restore == true)
 			RestoreCurAttr();
 	}
@@ -71,7 +68,7 @@ namespace MicroTUI
 
 	void Cursor::Print(int x, int y, Color::Pixel attrib)
 	{
-		SaveCurAttr();
+		//SaveCurAttr();
 		COORD cord;
 		cord.X = x;
 		cord.Y = y;
@@ -101,6 +98,12 @@ namespace MicroTUI
 	void Cursor::RestoreCursorAttributes(bool RCA)
 	{
 		_Restore = RCA;
+	}
+
+
+	void Cursor::SetOutputBuffer(HANDLE hOut)
+	{
+		hStdOut = hOut;
 	}
 
 

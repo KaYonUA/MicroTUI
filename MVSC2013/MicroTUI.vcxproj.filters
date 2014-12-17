@@ -13,78 +13,90 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Заголовочные файлы\Render">
+      <UniqueIdentifier>{c0c4858d-b41a-49c4-99c9-401987b37ab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\TUI">
+      <UniqueIdentifier>{3f70e0a7-a03d-4e14-b27a-50f7e0db06cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Render">
+      <UniqueIdentifier>{3bdfb6bb-be5a-4470-8ac6-32521692686e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\TUI">
+      <UniqueIdentifier>{85ae4d24-e9e1-41bd-ae9b-fd42f528fea5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MicroTUI\Window.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\Widget.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\TUI.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\GroupBox.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\Render\Size.hpp">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\Render\ScreenBuffer.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\Render\Render.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MicroTUI\Render\Cursor.h">
-      <Filter>Заголовочные файлы</Filter>
+    <ClInclude Include="..\MicroTUI\Render\Buffer.h">
+      <Filter>Заголовочные файлы\Render</Filter>
     </ClInclude>
     <ClInclude Include="..\MicroTUI\Render\Color.hpp">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\MicroTUI\Render\Buffer.h">
-      <Filter>Заголовочные файлы</Filter>
+    <ClInclude Include="..\MicroTUI\Render\Cursor.h">
+      <Filter>Заголовочные файлы\Render</Filter>
     </ClInclude>
-    <ClInclude Include="..\MicroTUI\ProgressBar.h">
-      <Filter>Заголовочные файлы</Filter>
+    <ClInclude Include="..\MicroTUI\Render\Render.h">
+      <Filter>Заголовочные файлы\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\Render\ScreenBuffer.h">
+      <Filter>Заголовочные файлы\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\Render\Size.hpp">
+      <Filter>Заголовочные файлы\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\GroupBox.h">
+      <Filter>Заголовочные файлы\TUI</Filter>
     </ClInclude>
     <ClInclude Include="..\MicroTUI\Label.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\TUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\ProgressBar.h">
+      <Filter>Заголовочные файлы\TUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\TUI.h">
+      <Filter>Заголовочные файлы\TUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\Widget.h">
+      <Filter>Заголовочные файлы\TUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MicroTUI\Window.h">
+      <Filter>Заголовочные файлы\TUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MicroTUI\Window.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MicroTUI\Widget.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MicroTUI\TUI.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MicroTUI\GroupBox.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MicroTUI\Render\ScreenBuffer.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MicroTUI\Render\Render.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MicroTUI\Render\Cursor.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MicroTUI\Render\Buffer.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="..\main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\MicroTUI\ProgressBar.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="..\MicroTUI\Render\Buffer.cpp">
+      <Filter>Файлы исходного кода\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Render\Cursor.cpp">
+      <Filter>Файлы исходного кода\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Render\Render.cpp">
+      <Filter>Файлы исходного кода\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\TUI.cpp">
+      <Filter>Файлы исходного кода\TUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Widget.cpp">
+      <Filter>Файлы исходного кода\TUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Render\ScreenBuffer.cpp">
+      <Filter>Файлы исходного кода\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\GroupBox.cpp">
+      <Filter>Файлы исходного кода\TUI</Filter>
     </ClCompile>
     <ClCompile Include="..\MicroTUI\Label.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\TUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\ProgressBar.cpp">
+      <Filter>Файлы исходного кода\TUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Window.cpp">
+      <Filter>Файлы исходного кода\TUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

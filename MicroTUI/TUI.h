@@ -6,6 +6,7 @@
 #include "Render\Render.h"
 #include "Window.h"
 #include <vector>
+#include <thread>
 
 namespace MicroTUI
 {
@@ -20,6 +21,7 @@ namespace MicroTUI
 			void ShowWindow();
 			void _GetMessage();
 			void _DispatchMessage();
+			void MouseCursor(void(*Hendlr)(BYTE));
 			unsigned short Width();
 			unsigned short Height();
 			COLOR BackgroundColor;

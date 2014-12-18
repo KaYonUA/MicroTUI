@@ -55,6 +55,19 @@ namespace MicroTUI
 			WindowSize.height = HeightWindow;
 		}
 
+		void Window::_h_lclicked(int lx, int ly)
+		{
+			if (_f_border == false)
+				lx += 1;
+			for (int it = (int)childWidgets.size()-1; it >= 0; it--)
+			if (childWidgets[it]->WidgetCoord.X < lx &&childWidgets[it]->WidgetCoord.Y < ly &&
+				lx <= childWidgets[it]->WidgetCoord.X + childWidgets[it]->WidgetSize.width &&
+				ly <= childWidgets[it]->WidgetCoord.Y + childWidgets[it]->WidgetSize.height)
+			{
+				childWidgets[it]->Click();
+				break;
+			}
+		}
 
 		void Window::AddWidget(Widget *widget)
 		{

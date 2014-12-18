@@ -72,6 +72,9 @@
     <ClInclude Include="..\MicroTUI\TUI\TUI.h">
       <Filter>Заголовочные файлы\TUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\MicroTUI\Widget\Button.h">
+      <Filter>Заголовочные файлы\Widget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="..\MicroTUI\TUI\Window.cpp">
       <Filter>Файлы исходного кода\TUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Widget\Button.cpp">
+      <Filter>Файлы исходного кода\Widget</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

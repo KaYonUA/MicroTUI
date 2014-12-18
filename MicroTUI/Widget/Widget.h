@@ -14,11 +14,13 @@ namespace MicroTUI
 			Widget(int xCoord, int yCoord, int WidthWidget, int HeightWidget,const char * str = 0);
 			void MoveWidget(int xCoord, int yCoord);
 			void ResizeWidget(int WidthWidget, int HeightWidget);
+			virtual void Click(){}
 			virtual void _Render_func(ScreenBuffer*,COORD){};
-		protected:
-			bool _f_Enebled;
+
 			mSIZE WidgetSize;
 			COORD WidgetCoord;
+		protected:
+			bool _f_Enebled;
 			std::string widgettitle;
 		};
 	}

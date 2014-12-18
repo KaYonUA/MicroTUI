@@ -11,9 +11,7 @@ namespace MicroTUI
 			WidgetSize.width = WidthWidget;
 			WidgetSize.height = HeightWidget;
 			if (str != 0)
-			{
 				widgettitle = str;
-			}
 			else
 				widgettitle.clear();
 			

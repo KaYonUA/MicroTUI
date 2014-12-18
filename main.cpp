@@ -5,10 +5,11 @@
  */
 
 #include "MicroTUI\TUI\TUI.h"
+#include "MicroTUI\TUI\Mouse.h"
 #include "MicroTUI\Widget\GroupBox.h"
 #include "MicroTUI\Widget\Label.h"
 #include "MicroTUI\Widget\ProgressBar.h"
-#include "MicroTUI\TUI\Mouse.h"
+#include "MicroTUI\Widget\Button.h"
 #include <mutex>
 #include <conio.h>
 using namespace std;
@@ -20,7 +21,9 @@ using Color::Pixel;
 int main()
 {
 	SetConsoleTitle(L"MicroTUI");
-	TUI *gui = new TUI();	//Main class
+	SetCursor(NULL);
+	ShowCursor(0);
+	static TUI *gui = new TUI();	//Main class
 	static string er = "0";
 	Label PrAnyK(&er, 7, 18, 0, 0, false);
 	COLOR Grey = Pixel::ColorToWord(Pixel::Black, Pixel::LightGray);					//Black text and Light-Grey background
@@ -29,12 +32,15 @@ int main()
 	COLOR Yellow = Pixel::ColorToWord(Pixel::Black, Pixel::Yellow);						 //Black text and Yellow background
 	COLOR Blue = Pixel::ColorToWord(Pixel::Black, Pixel::LightBlue);					 //Black text and ligth blue background
 	Window fullScreen("MicroTUI", 0, 0, 0, 0, W_VISIBLE | W_MAXIMIZED);					//Create new full screen window with empty border
-	Window simpleW("Beta", 20, 15, 50, 22, W_VISIBLE | W_BORDERED);							 //Create window 50x16 with border.
+	static Window simpleW("Beta", 20, 15, 50, 22, W_VISIBLE | W_BORDERED);							 //Create window 50x16 with border.
 	GroupBox descr("Desription", 1, 1, 45, 6);												//Create group box
 	GroupBox prgs("Progress Bar", 1, 8, 45, 8);												//Create group box
 	Label lDescr("This is beta test MicroTUI v0.1.598 developed by KaYonUA.\n               vk.com/kayonua", 3, 3, 42, 3, true);//Create multiline label
 	ProgressBar prgbar(3, 10, 37, 3);														//Create label
-	ProgressBar prgbar2(3, 14, 37, 1);														//Create label
+	ProgressBar prgbar2(3, 14, 37, 1);		//Create label
+	Button btn("Test", 8, 4,8,3, []()->void{
+		simpleW.MoveWindow(20, 25);
+	});
 
 	string procents = "0%"; char temp_n[5]; int _i_num = 0;
 	Label procnt(&procents, 41, 12, 0, 0, false);
@@ -50,6 +56,7 @@ int main()
 
 
 	/*Adding widgets to window*/
+	fullScreen.AddWidget(&btn);
 	simpleW.AddWidget(&descr);
 	simpleW.AddWidget(&lDescr);
 	simpleW.AddWidget(&prgs);
@@ -71,6 +78,7 @@ int main()
 		{
 		case MOUSE_RBCLICKED_:
 			er = "MOUSE_RBCLICKED_ ";
+			gui->Click(cord.X, cord.Y);
 			break;
 		case MOUSE_LBCLICKED_:
 			er = "MOUSE_LBCLICKED_";

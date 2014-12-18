@@ -20,6 +20,7 @@
     <ClInclude Include="..\MicroTUI\TUI\Mouse.h" />
     <ClInclude Include="..\MicroTUI\TUI\TUI.h" />
     <ClInclude Include="..\MicroTUI\TUI\Window.h" />
+    <ClInclude Include="..\MicroTUI\Widget\Button.h" />
     <ClInclude Include="..\MicroTUI\Widget\GroupBox.h" />
     <ClInclude Include="..\MicroTUI\Widget\Label.h" />
     <ClInclude Include="..\MicroTUI\Widget\ProgressBar.h" />
@@ -34,6 +35,7 @@
     <ClCompile Include="..\MicroTUI\TUI\Mouse.cpp" />
     <ClCompile Include="..\MicroTUI\TUI\TUI.cpp" />
     <ClCompile Include="..\MicroTUI\TUI\Window.cpp" />
+    <ClCompile Include="..\MicroTUI\Widget\Button.cpp" />
     <ClCompile Include="..\MicroTUI\Widget\GroupBox.cpp" />
     <ClCompile Include="..\MicroTUI\Widget\Label.cpp" />
     <ClCompile Include="..\MicroTUI\Widget\ProgressBar.cpp" />

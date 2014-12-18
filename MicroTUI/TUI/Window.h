@@ -26,16 +26,18 @@ namespace MicroTUI
 			void MoveWindow(int xCoord, int yCoord);
 			void ResizeWindow(int WidthWindow, int HeightWindow);
 			void AddWidget(Widget *widget);
+			void _h_lclicked(int lx, int ly);
 			bool onFocus();
 			void onFocus(bool Focused);
 			void _Render_func(ScreenBuffer *buffer);
 
+			mSIZE WindowSize;
+			COORD WindowCoord;
 			COLOR WindowBackground;
 			COLOR Border;
 		private:
-			COORD WindowCoord;
+			
 			COLOR WinShadow;
-			mSIZE WindowSize;
 			std::vector<Widget*> childWidgets;
 			char * WindowTitle;
 

@@ -22,6 +22,20 @@ namespace MicroTUI
 			this->mouse = mouse;
 		}
 
+		void TUI::Click(int x, int y)
+		{
+			for (int i = (int)windowsList.size()-1; i >= 0; i--)
+			{
+				if (windowsList[i]->WindowCoord.X <= x&&windowsList[i]->WindowCoord.Y <= y &&
+					x <= windowsList[i]->WindowCoord.X + windowsList[i]->WindowSize.width &&
+					y <= windowsList[i]->WindowCoord.Y + windowsList[i]->WindowSize.height)
+				{
+					windowsList[i]->_h_lclicked(x - windowsList[i]->WindowCoord.X, y - windowsList[i]->WindowCoord.Y);
+					break;
+				}
+			}
+		}
+
 		void TUI::UpdateWindow()
 		{
 			__Screenbuffer.Fill(Color::Pixel(' ', BackgroundColor));

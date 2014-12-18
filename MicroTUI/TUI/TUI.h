@@ -25,6 +25,7 @@ namespace MicroTUI
 			TUI();
 			void AddWindow(Window *window);
 			void SetMouse(Mouse *mouse);
+			void Click(int x, int y);
 			void UpdateWindow();
 			void ShowWindow();
 			void _GetMessage();

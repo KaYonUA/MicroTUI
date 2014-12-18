@@ -9,11 +9,17 @@ namespace MicroTUI
 		{
 			BackgroundColor = Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::LightBlue);
 			_Rendr.Connect(&__Screenbuffer);
+			mouse = nullptr;
 		}
 
 		void TUI::AddWindow(Window *window)
 		{
 			windowsList.push_back(window);
+		}
+
+		void TUI::SetMouse(Mouse *mouse)
+		{
+			this->mouse = mouse;
 		}
 
 		void TUI::UpdateWindow()
@@ -39,6 +45,8 @@ namespace MicroTUI
 				//	UpdateWindow();
 				//}
 			}
+			if (mouse != nullptr)
+				mouse->_Render_func(&__Screenbuffer);
 		}
 
 
@@ -70,19 +78,17 @@ namespace MicroTUI
 			return size.height;
 		}
 
-		void TUI::MouseCursor(void(*Hendlr)(BYTE))
+		void TUI::MouseCursor(void(*Hendlr)(BYTE,COORD), HANDLE stdIn)
 		{
-			std::thread mouse([Hendlr]()->void {
-				HANDLE _ConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE);
-				HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
-				DWORD cNumRead, fdwMode, fdwSaveOldMode, i;
-				INPUT_RECORD irInBuf[128];
-				GetConsoleMode(hStdin, &fdwSaveOldMode);
-				fdwMode = fdwSaveOldMode | ENABLE_MOUSE_INPUT;
-				SetConsoleMode(hStdin, fdwMode);
+			std::thread mouse([Hendlr, stdIn]()->void {
+				DWORD cNumRead, fdwMode, fdwOldMode, i;
+				INPUT_RECORD irInBuf[300];
+				GetConsoleMode(stdIn, &fdwOldMode);
+				fdwMode = fdwOldMode | ENABLE_MOUSE_INPUT;
+				SetConsoleMode(stdIn, fdwMode);
 				while (true)
 				{
-					ReadConsoleInput(hStdin, irInBuf, 250, &cNumRead);
+					ReadConsoleInput(stdIn, irInBuf, 250, &cNumRead);
 					for (i = 0; i < cNumRead; i++)
 					{
 						if (irInBuf[i].EventType == MOUSE_EVENT)
@@ -90,26 +96,22 @@ namespace MicroTUI
 							switch (irInBuf[i].Event.MouseEvent.dwEventFlags)
 							{
 							case MOUSE_MOVED:
-								Hendlr(1);
+								Hendlr(MOUSE_MOVED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
 								break;
 							case DOUBLE_CLICK:
-								Hendlr(2);
+								Hendlr(MOUSE_DCLICKED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
 								break;
 							case MOUSE_WHEELED:
-								Hendlr(3);
+								Hendlr(MOUSE_WHEELED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
 								break;
 							default:
 								if (irInBuf[i].Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED)
-								{
-									Hendlr(4);
-								}
+									Hendlr(MOUSE_RBCLICKED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
 								else
-								if (irInBuf[i].Event.MouseEvent.dwButtonState & RIGHTMOST_BUTTON_PRESSED)
-								{
-									Hendlr(5);
-								}
-								else
-									Hendlr(6);
+									if (irInBuf[i].Event.MouseEvent.dwButtonState & RIGHTMOST_BUTTON_PRESSED)
+										Hendlr(MOUSE_LBCLICKED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
+									else
+										Hendlr(MOUSE_BRELEAZED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
 								break;
 
 							}

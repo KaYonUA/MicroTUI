@@ -63,6 +63,9 @@
     <ClInclude Include="..\MicroTUI\Window.h">
       <Filter>Заголовочные файлы\TUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\MicroTUI\Mouse.h">
+      <Filter>Заголовочные файлы\TUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -96,6 +99,9 @@
       <Filter>Файлы исходного кода\TUI</Filter>
     </ClCompile>
     <ClCompile Include="..\MicroTUI\Window.cpp">
+      <Filter>Файлы исходного кода\TUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Mouse.cpp">
       <Filter>Файлы исходного кода\TUI</Filter>
     </ClCompile>
   </ItemGroup>

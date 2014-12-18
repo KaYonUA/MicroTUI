@@ -2,7 +2,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include "Render\ScreenBuffer.h"
+#include "..\Render\ScreenBuffer.h"
 
 namespace MicroTUI
 {

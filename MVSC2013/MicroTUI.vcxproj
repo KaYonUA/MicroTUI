@@ -11,33 +11,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MicroTUI\GroupBox.h" />
-    <ClInclude Include="..\MicroTUI\Label.h" />
-    <ClInclude Include="..\MicroTUI\Mouse.h" />
-    <ClInclude Include="..\MicroTUI\ProgressBar.h" />
     <ClInclude Include="..\MicroTUI\Render\Buffer.h" />
     <ClInclude Include="..\MicroTUI\Render\Color.hpp" />
     <ClInclude Include="..\MicroTUI\Render\Cursor.h" />
     <ClInclude Include="..\MicroTUI\Render\Render.h" />
     <ClInclude Include="..\MicroTUI\Render\ScreenBuffer.h" />
     <ClInclude Include="..\MicroTUI\Render\Size.hpp" />
-    <ClInclude Include="..\MicroTUI\TUI.h" />
-    <ClInclude Include="..\MicroTUI\Widget.h" />
-    <ClInclude Include="..\MicroTUI\Window.h" />
+    <ClInclude Include="..\MicroTUI\TUI\Mouse.h" />
+    <ClInclude Include="..\MicroTUI\TUI\TUI.h" />
+    <ClInclude Include="..\MicroTUI\TUI\Window.h" />
+    <ClInclude Include="..\MicroTUI\Widget\GroupBox.h" />
+    <ClInclude Include="..\MicroTUI\Widget\Label.h" />
+    <ClInclude Include="..\MicroTUI\Widget\ProgressBar.h" />
+    <ClInclude Include="..\MicroTUI\Widget\Widget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\MicroTUI\GroupBox.cpp" />
-    <ClCompile Include="..\MicroTUI\Label.cpp" />
-    <ClCompile Include="..\MicroTUI\Mouse.cpp" />
-    <ClCompile Include="..\MicroTUI\ProgressBar.cpp" />
     <ClCompile Include="..\MicroTUI\Render\Buffer.cpp" />
     <ClCompile Include="..\MicroTUI\Render\Cursor.cpp" />
     <ClCompile Include="..\MicroTUI\Render\Render.cpp" />
     <ClCompile Include="..\MicroTUI\Render\ScreenBuffer.cpp" />
-    <ClCompile Include="..\MicroTUI\TUI.cpp" />
-    <ClCompile Include="..\MicroTUI\Widget.cpp" />
-    <ClCompile Include="..\MicroTUI\Window.cpp" />
+    <ClCompile Include="..\MicroTUI\TUI\Mouse.cpp" />
+    <ClCompile Include="..\MicroTUI\TUI\TUI.cpp" />
+    <ClCompile Include="..\MicroTUI\TUI\Window.cpp" />
+    <ClCompile Include="..\MicroTUI\Widget\GroupBox.cpp" />
+    <ClCompile Include="..\MicroTUI\Widget\Label.cpp" />
+    <ClCompile Include="..\MicroTUI\Widget\ProgressBar.cpp" />
+    <ClCompile Include="..\MicroTUI\Widget\Widget.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2507C329-BC5A-4E38-AE0C-6FB25D6FE361}</ProjectGuid>

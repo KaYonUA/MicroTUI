@@ -4,11 +4,11 @@
   Date: 12.12.2014
  */
 
-#include "MicroTUI\TUI.h"
-#include "MicroTUI\GroupBox.h"
-#include "MicroTUI\Label.h"
-#include "MicroTUI\ProgressBar.h"
-#include "MicroTUI\Mouse.h"
+#include "MicroTUI\TUI\TUI.h"
+#include "MicroTUI\Widget\GroupBox.h"
+#include "MicroTUI\Widget\Label.h"
+#include "MicroTUI\Widget\ProgressBar.h"
+#include "MicroTUI\TUI\Mouse.h"
 #include <mutex>
 #include <conio.h>
 using namespace std;

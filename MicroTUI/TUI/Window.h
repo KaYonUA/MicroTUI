@@ -2,8 +2,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "Render\ScreenBuffer.h"
-#include "Widget.h"
+#include "..\Render\ScreenBuffer.h"
+#include "..\Widget\Widget.h"
 #include <vector>
 
 namespace MicroTUI

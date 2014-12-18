@@ -2,7 +2,7 @@
 #ifndef MOUSE_H
 #define MOUSE_H
 
-#include "Render\ScreenBuffer.h"
+#include "..\Render\ScreenBuffer.h"
 
 namespace MicroTUI
 {

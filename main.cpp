@@ -37,7 +37,7 @@ int main()
 	static Window simpleW("Beta", 20, 9, 50, 23, W_VISIBLE | W_BORDERED);							 //Create window 50x16 with border.
 	GroupBox descr("Desription", 1, 1, 45, 6);												//Create group box
 	GroupBox prgs("Progress Bar", 1, 8, 45, 8);												//Create group box
-	Label lDescr("This is beta test MicroTUI v0.3.752-beta8 developed by KaYonUA.\n\
+	Label lDescr("This is beta test MicroTUI v0.3.752-beta9 developed by KaYonUA.\n\
 											vk.com/kayonua", 3, 3, 42, 3, true);//Create multiline label
 	ProgressBar prgbar(3, 10, 37, 3);														//Create label
 	ProgressBar prgbar2(3, 14, 37, 1);		//Create label

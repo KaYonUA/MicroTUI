@@ -25,21 +25,25 @@ int main()
 	ShowCursor(0);
 	static TUI *gui = new TUI();	//Main class
 	static string er = "0";
+	static bool buttonPressed = false;
 	Label PrAnyK(&er, 7, 18, 0, 0, false);
 	COLOR Grey = Pixel::ColorToWord(Pixel::Black, Pixel::LightGray);					//Black text and Light-Grey background
+	COLOR dGrey = Pixel::ColorToWord(Pixel::Black, Pixel::DarkGray);					//Black text and Light-Grey background
 	COLOR Green = Pixel::ColorToWord(Pixel::Black, Pixel::Green);						//Black text and Green background
 	COLOR White = Pixel::ColorToWord(Pixel::Black, Pixel::White);						//Black text and White background
 	COLOR Yellow = Pixel::ColorToWord(Pixel::Black, Pixel::Yellow);						 //Black text and Yellow background
 	COLOR Blue = Pixel::ColorToWord(Pixel::Black, Pixel::LightBlue);					 //Black text and ligth blue background
 	Window fullScreen("MicroTUI", 0, 0, 0, 0, W_VISIBLE | W_MAXIMIZED);					//Create new full screen window with empty border
-	static Window simpleW("Beta", 20, 15, 50, 22, W_VISIBLE | W_BORDERED);							 //Create window 50x16 with border.
+	static Window simpleW("Beta", 20, 9, 50, 23, W_VISIBLE | W_BORDERED);							 //Create window 50x16 with border.
 	GroupBox descr("Desription", 1, 1, 45, 6);												//Create group box
 	GroupBox prgs("Progress Bar", 1, 8, 45, 8);												//Create group box
-	Label lDescr("This is beta test MicroTUI v0.1.598 developed by KaYonUA.\n               vk.com/kayonua", 3, 3, 42, 3, true);//Create multiline label
+	Label lDescr("This is beta test MicroTUI v0.3.752-beta8 developed by KaYonUA.\n\
+											vk.com/kayonua", 3, 3, 42, 3, true);//Create multiline label
 	ProgressBar prgbar(3, 10, 37, 3);														//Create label
 	ProgressBar prgbar2(3, 14, 37, 1);		//Create label
-	Button btn("Test", 8, 4,8,3, []()->void{
-		simpleW.MoveWindow(20, 25);
+	Button btn("Button", 32, 17,12,3, []()->void{
+		//simpleW.MoveWindow(20, 25);
+		buttonPressed = true;
 	});
 
 	string procents = "0%"; char temp_n[5]; int _i_num = 0;
@@ -56,7 +60,7 @@ int main()
 
 
 	/*Adding widgets to window*/
-	fullScreen.AddWidget(&btn);
+	simpleW.AddWidget(&btn);
 	simpleW.AddWidget(&descr);
 	simpleW.AddWidget(&lDescr);
 	simpleW.AddWidget(&prgs);
@@ -105,7 +109,7 @@ int main()
 	}, GetStdHandle(STD_INPUT_HANDLE));
 
 	/*Updating (Render in buffer) and Show on screen*/
-	while (true)
+	while (!buttonPressed)
 	{
 		//_mutx.lock();
 		gui->UpdateWindow();
@@ -128,5 +132,6 @@ int main()
 		gui->ShowWindow();
 		Sleep(100);
 	}
+	delete gui;
 	getch();
 }

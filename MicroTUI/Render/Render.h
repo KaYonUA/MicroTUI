@@ -10,8 +10,7 @@ namespace MicroTUI
 	class Render
 	{
 	public:
-		Render() 
-		{
+		Render() {
 			curs.RestoreCursorAttributes(false);
 			CONSOLE_CURSOR_INFO structCursorInfo;
 			GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &structCursorInfo);
@@ -19,8 +18,7 @@ namespace MicroTUI
 			SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &structCursorInfo);
 			curs.hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 		}
-		Render(ScreenBuffer *scrbuffer)
-		{
+		Render(ScreenBuffer *scrbuffer){
 			ScrBuff = scrbuffer;
 			curs.hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 

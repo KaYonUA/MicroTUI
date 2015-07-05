@@ -6,19 +6,17 @@
 
 namespace MicroTUI
 {
-	namespace GUI
+	class Mouse
 	{
-		class Mouse
-		{
-		public:
-			Mouse();
-			void MoveCursor(int x, int y);
-			void _Render_func(ScreenBuffer *buffer);
-		private:
-			COORD _c_pos;
-			COLOR _c_col;
-		};
-	}
+	public:
+		Mouse();
+		void MoveCursor(int x, int y);
+		void _Render_func(ScreenBuffer *buffer);
+	private:
+		COORD _c_pos;
+		ConsoleColor backgroundColor;
+		ConsoleColor textColor;
+	};
 }
 
 

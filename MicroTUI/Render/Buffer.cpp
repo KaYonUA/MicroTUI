@@ -3,81 +3,49 @@
 namespace MicroTUI
 {
 
-	Buffer::Buffer()
-	{
+	Buffer::Buffer(){
 
 	}
 
-	void Buffer::Clear(Color::Pixel attribut)
-	{
-		for (size_t height = 0; height <= ScreenHeight; height++)
-		for (size_t width = 0; width <= ScreenWidth; width++)
+	void Buffer::Clear(Pixel attribut){
+		for (int height = 0; height <= ScreenHeight; height++)
+		for (int width = 0; width <= ScreenWidth; width++)
 			buffer[width][height] = attribut;
 	}
 
-	Color::Pixel Buffer::Get(int x, int y)
-	{
-		if (x >= ScreenWidth || y >= ScreenHeight)
-			return Color::Pixel('\b');
-		else
-			return buffer[x][y];
+	Pixel Buffer::Get(int x, int y){
+		if (x < ScreenWidth && x >= 0){
+			if (y < ScreenHeight && y >= 0)
+				return buffer[x][y];
+		}
+		return Pixel('\b');
 	}
 
-	void Buffer::Set(Color::Pixel attr, int x, int y)
-	{
-		/*int ex, ey;
-		if (x < ScreenWidth)
-			ex = x;
-		else
-			ex = x - ScreenWidth;
-		if (y < ScreenHeight)
-			ey = y;
-		else
-			ey = y - ScreenHeight;
-		if (attr.Color == Color::_Transparent)
-			buffer[ex][ey].letter = attr.letter;
-		else
-			buffer[ex][ey] = attr;*/
-		if (x < ScreenWidth){
-			if (y < ScreenHeight){
-				if (attr.Color == Color::_Transparent)
-					buffer[x][y].letter = attr.letter;
-				else
-					buffer[x][y] = attr;
+	void Buffer::Set(Pixel attr, int x, int y){
+		if (x < ScreenWidth && x >=0){
+			if (y < ScreenHeight && y >= 0){
+				buffer[x][y] = attr;
 			}
 		}
-		
-		
-
 	}
 
-	Color::Pixel **Buffer::BufferCopy()
-	{
+	Pixel **Buffer::BufferCopy(){
 		return buffer;
 	}
 
-	void Buffer::SetBuffer(Color::Pixel **buffer)
-	{
+	void Buffer::SetBuffer(Pixel **buffer){
 		this->buffer = buffer;
 	}
 
-	void Buffer::Resize(int Width, int Height)
-	{
-		/*if (ScreenWidth > 0 && ScreenWidth<5000)
-			delete[] buffer;*/
+	void Buffer::Resize(int Width, int Height){
 		ScreenWidth = Width;
 		ScreenHeight = Height;
-		buffer = new Color::Pixel*[ScreenWidth];
-		for (size_t h = 0; h <= ScreenWidth; h++)
-			buffer[h] = ArrayInit<Color::Pixel>(ScreenHeight, 
-			Color::Pixel(' ', Color::Pixel::ColorToWord(Color::Pixel::White, Color::Pixel::Black),
-			EMPTY));
+		buffer = new Pixel*[ScreenWidth];
+		for (int h = 0; h <= ScreenWidth; h++)
+			buffer[h] = ArrayInit<Pixel>(ScreenHeight, Pixel(' ', cWhite, cBlack));
 	}
 
-	Buffer::~Buffer()
-	{
-		/*for (size_t h = 0; h < ScreenHeight; h++)
-			delete[] buffer[h];*/
+	Buffer::~Buffer(){
 		delete[] buffer;
 	}
 }

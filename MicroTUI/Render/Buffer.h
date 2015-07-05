@@ -23,32 +23,28 @@ namespace MicroTUI
 		Buffer(const Buffer& copy)
 			: ScreenWidth(copy.ScreenWidth),
 			ScreenHeight(copy.ScreenHeight),
-			buffer(new Color::Pixel*[copy.ScreenWidth])
+			buffer(new Pixel*[copy.ScreenWidth])
 		{
-			for (size_t h = 0; h <= ScreenWidth; h++)
-				buffer[h] = ArrayInit<Color::Pixel>(ScreenHeight,
-				Color::Pixel(' ', Color::Pixel::ColorToWord(Color::Pixel::White, Color::Pixel::Black),
-				EMPTY));
-			for (size_t h = 0; h <= ScreenWidth; h++)
-				std::copy(copy.buffer[h], copy.buffer[h] + copy.ScreenHeight, buffer[h]);
+			for (int h = 0; h <= ScreenWidth; h++)
+				buffer[h] = ArrayInit<Pixel>(ScreenHeight,Pixel(' ', cWhite, cBlack));
+			for (int h = 0; h <= ScreenWidth; h++)
+				memcpy(buffer[h], copy.buffer[h], copy.ScreenHeight);
 		}
 		~Buffer();
-		Color::Pixel Get(int x, int y);
-		void Set(Color::Pixel attr, int x, int y);
-		Color::Pixel **BufferCopy();
-		void SetBuffer(Color::Pixel **buffer);
+		Pixel Get(int x, int y);
+		void Set(Pixel attr, int x, int y);
+		Pixel **BufferCopy();
+		void SetBuffer(Pixel **buffer);
 		void Resize(int Width, int Height);
-		void Clear(Color::Pixel attribut = Color::Pixel(' ', Color::Pixel::ColorToWord(
-			Color::Pixel::White, Color::Pixel::Black), EMPTY));
-		void Copy(const Buffer& copy)
-		{
-			for (size_t h = 0; h <= ScreenWidth; h++)
-				std::copy(copy.buffer[h], copy.buffer[h] + copy.ScreenHeight, buffer[h]);
+		void Clear(Pixel attribut = Pixel(' ',cWhite, cBlack));
+		void Copy(const Buffer& copy){
+			for (int h = 0; h <= ScreenWidth; h++)
+				memcpy(buffer[h],copy.buffer[h], sizeof(Pixel)*copy.ScreenHeight);
 		}
-		unsigned int ScreenWidth;
-		unsigned int ScreenHeight;
+		int ScreenWidth;
+		int ScreenHeight;
 	private:
-		Color::Pixel **buffer;
+		Pixel **buffer;
 		
 	};
 }

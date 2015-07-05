@@ -89,9 +89,6 @@
     <ClCompile Include="..\MicroTUI\Render\Render.cpp">
       <Filter>Файлы исходного кода\Render</Filter>
     </ClCompile>
-    <ClCompile Include="..\MicroTUI\Render\ScreenBuffer.cpp">
-      <Filter>Файлы исходного кода\Render</Filter>
-    </ClCompile>
     <ClCompile Include="..\MicroTUI\Widget\GroupBox.cpp">
       <Filter>Файлы исходного кода\Widget</Filter>
     </ClCompile>
@@ -115,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="..\MicroTUI\Widget\Button.cpp">
       <Filter>Файлы исходного кода\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MicroTUI\Render\ScreenBuffer.cpp">
+      <Filter>Файлы исходного кода\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

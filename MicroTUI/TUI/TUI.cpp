@@ -27,10 +27,12 @@ namespace MicroTUI
 				x <= (int)windowsList[i]->WindowCoord.X + (int)windowsList[i]->WindowSize.width &&
 				y <= (int)windowsList[i]->WindowCoord.Y + (int)windowsList[i]->WindowSize.height)
 			{
-				windowsList[i]->_h_lclicked(x - windowsList[i]->WindowCoord.X,
-					y - windowsList[i]->WindowCoord.Y, _double);
-				m_clickedWindow = windowsList[i];
-				break;
+				if (windowsList[i]->_f_visible){
+					windowsList[i]->_h_lclicked(x - windowsList[i]->WindowCoord.X,
+						y - windowsList[i]->WindowCoord.Y, _double);
+					m_clickedWindow = windowsList[i];
+					break;
+				}
 			}
 		}
 	}

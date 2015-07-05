@@ -39,14 +39,6 @@ namespace MicroTUI
 		COORD WindowCoord;
 		ConsoleColor backgroundColor;
 		ConsoleColor borderColor;
-	private:
-
-		bool Draging;
-		COORD dragStart;
-		ConsoleColor shadowColor;
-		std::vector<Widget*> childWidgets;
-		Widget* m_clickedWidget;
-		char * WindowTitle;
 
 		bool _f_fixed;
 		bool _f_onFocus;
@@ -55,6 +47,14 @@ namespace MicroTUI
 		bool _f_shadow;
 		bool _f_visible;
 		bool _f_top_;
+	private:
+
+		bool Draging;
+		COORD dragStart;
+		ConsoleColor shadowColor;
+		std::vector<Widget*> childWidgets;
+		Widget* m_clickedWidget;
+		char * WindowTitle;
 	};
 }
 

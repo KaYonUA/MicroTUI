@@ -25,11 +25,30 @@ namespace MicroTUI
 
 	void Buffer::Set(Color::Pixel attr, int x, int y)
 	{
-		if (x <= ScreenWidth || y <= ScreenHeight)
-			if (attr.Color == Color::_Transparent)
-				buffer[x][y].letter = attr.letter;
-			else
-				buffer[x][y] = attr;
+		/*int ex, ey;
+		if (x < ScreenWidth)
+			ex = x;
+		else
+			ex = x - ScreenWidth;
+		if (y < ScreenHeight)
+			ey = y;
+		else
+			ey = y - ScreenHeight;
+		if (attr.Color == Color::_Transparent)
+			buffer[ex][ey].letter = attr.letter;
+		else
+			buffer[ex][ey] = attr;*/
+		if (x < ScreenWidth){
+			if (y < ScreenHeight){
+				if (attr.Color == Color::_Transparent)
+					buffer[x][y].letter = attr.letter;
+				else
+					buffer[x][y] = attr;
+			}
+		}
+		
+		
+
 	}
 
 	Color::Pixel **Buffer::BufferCopy()

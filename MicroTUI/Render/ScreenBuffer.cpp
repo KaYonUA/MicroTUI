@@ -1,5 +1,5 @@
 #include "ScreenBuffer.h"
-//#include <iostream>
+#include <iostream>
 
 namespace MicroTUI
 {
@@ -15,9 +15,22 @@ namespace MicroTUI
 		{
 		case SB_NEWBUFFER:
 			NewBuffer.Set(attrib, x, y);
+			/*COORD cord;
+			cord.X = x;
+			cord.Y = y;
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cord);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), attrib.Color);
+			std::cout << attrib.letter;
+			Sleep(100);*/
 			break;
 		case SB_CURRENTBUFFER:
 			CurrentBuffer.Set(attrib, x, y);
+			/*cord.X = x;
+			cord.Y = y;
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cord);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), attrib.Color);
+			std::cout << attrib.letter;
+			Sleep(100);*/
 			break;
 		}
 	}

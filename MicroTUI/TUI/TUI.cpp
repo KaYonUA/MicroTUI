@@ -10,29 +10,41 @@ namespace MicroTUI
 			BackgroundColor = Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::LightBlue);
 			_Rendr.Connect(&__Screenbuffer);
 			mouse = nullptr;
+			m_clickedWindow = nullptr;
 		}
 
-		void TUI::AddWindow(Window *window)
-		{
+		void TUI::AddWindow(Window *window){
 			windowsList.push_back(window);
 		}
 
-		void TUI::SetMouse(Mouse *mouse)
-		{
+		void TUI::SetMouse(Mouse * mouse){
 			this->mouse = mouse;
 		}
 
-		void TUI::Click(int x, int y)
-		{
-			for (int i = (int)windowsList.size()-1; i >= 0; i--)
-			{
+		void TUI::ClickMouse(int x, int y,bool _double){
+			for (int i = (int)windowsList.size()-1; i >= 0; i--){
 				if (windowsList[i]->WindowCoord.X <= x&&windowsList[i]->WindowCoord.Y <= y &&
 					x <= windowsList[i]->WindowCoord.X + windowsList[i]->WindowSize.width &&
 					y <= windowsList[i]->WindowCoord.Y + windowsList[i]->WindowSize.height)
 				{
-					windowsList[i]->_h_lclicked(x - windowsList[i]->WindowCoord.X, y - windowsList[i]->WindowCoord.Y);
+					windowsList[i]->_h_lclicked(x - windowsList[i]->WindowCoord.X,
+						y - windowsList[i]->WindowCoord.Y, _double);
+					m_clickedWindow = windowsList[i];
 					break;
 				}
+			}
+		}
+
+		void TUI::ReleaseMouse(int x, int y){
+			if (m_clickedWindow != nullptr){
+				m_clickedWindow->_h_lreleased(x, y);
+				m_clickedWindow = nullptr;
+			}
+		}
+
+		void TUI::moveMouse(int x, int y){
+			if (m_clickedWindow != nullptr){
+				m_clickedWindow->_h_lmoved(x, y);
 			}
 		}
 
@@ -94,15 +106,15 @@ namespace MicroTUI
 
 		void TUI::MouseCursor(void(*Hendlr)(BYTE,COORD), HANDLE stdIn)
 		{
-			std::thread mouse([Hendlr, stdIn]()->void {
+			std::thread mouse([Hendlr, stdIn, this]()->void {
 				DWORD cNumRead, fdwMode, fdwOldMode, i;
-				INPUT_RECORD irInBuf[300];
+				INPUT_RECORD irInBuf[5];
 				GetConsoleMode(stdIn, &fdwOldMode);
 				fdwMode = fdwOldMode | ENABLE_MOUSE_INPUT;
 				SetConsoleMode(stdIn, fdwMode);
 				while (true)
 				{
-					ReadConsoleInput(stdIn, irInBuf, 250, &cNumRead);
+					ReadConsoleInput(stdIn, irInBuf, 3, &cNumRead);
 					for (i = 0; i < cNumRead; i++)
 					{
 						if (irInBuf[i].EventType == MOUSE_EVENT)
@@ -111,21 +123,31 @@ namespace MicroTUI
 							{
 							case MOUSE_MOVED:
 								Hendlr(MOUSE_MOVED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
+								moveMouse(irInBuf[i].Event.MouseEvent.dwMousePosition.X,
+									irInBuf[i].Event.MouseEvent.dwMousePosition.Y);
 								break;
 							case DOUBLE_CLICK:
 								Hendlr(MOUSE_DCLICKED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
+								ClickMouse(irInBuf[i].Event.MouseEvent.dwMousePosition.X,
+									irInBuf[i].Event.MouseEvent.dwMousePosition.Y, true);
 								break;
 							case MOUSE_WHEELED:
 								Hendlr(MOUSE_WHEELED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
 								break;
 							default:
-								if (irInBuf[i].Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED)
+								if (irInBuf[i].Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED){
 									Hendlr(MOUSE_RBCLICKED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
+									ClickMouse(irInBuf[i].Event.MouseEvent.dwMousePosition.X,
+										irInBuf[i].Event.MouseEvent.dwMousePosition.Y,false);
+								}
 								else
 									if (irInBuf[i].Event.MouseEvent.dwButtonState & RIGHTMOST_BUTTON_PRESSED)
 										Hendlr(MOUSE_LBCLICKED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
-									else
+									else{
 										Hendlr(MOUSE_BRELEAZED_, irInBuf[i].Event.MouseEvent.dwMousePosition);
+										ReleaseMouse(irInBuf[i].Event.MouseEvent.dwMousePosition.X,
+											irInBuf[i].Event.MouseEvent.dwMousePosition.Y);
+									}
 								break;
 
 							}

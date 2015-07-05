@@ -6,7 +6,7 @@ namespace MicroTUI
 	{
 		Mouse::Mouse()
 		{
-			_c_col = Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::Black);
+			_c_col = Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::DarkGray);
 			_c_pos.X = 0;
 			_c_pos.Y = 0;
 		}
@@ -17,7 +17,7 @@ namespace MicroTUI
 		}
 		void Mouse::_Render_func(ScreenBuffer *buffer)
 		{
-			buffer->Set(SB_NEWBUFFER, _c_pos.X, _c_pos.Y, Color::Pixel('.', _c_col));
+			buffer->Set(SB_NEWBUFFER, _c_pos.X, _c_pos.Y, Color::Pixel('x', _c_col));
 		}
 	}
 }

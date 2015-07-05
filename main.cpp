@@ -20,42 +20,58 @@ using Color::Pixel;
 
 int main()
 {
-	SetConsoleTitle(L"MicroTUI");
+	SetConsoleTitle(L"MicroTUI x64");
 	SetCursor(NULL);
 	ShowCursor(0);
+
 	static TUI *gui = new TUI();	//Main class
 	static string er = "0";
 	static bool buttonPressed = false;
+
 	Label PrAnyK(&er, 7, 18, 0, 0, false);
-	COLOR Grey = Pixel::ColorToWord(Pixel::Black, Pixel::LightGray);					//Black text and Light-Grey background
-	COLOR dGrey = Pixel::ColorToWord(Pixel::Black, Pixel::DarkGray);					//Black text and Light-Grey background
-	COLOR Green = Pixel::ColorToWord(Pixel::Black, Pixel::Green);						//Black text and Green background
-	COLOR White = Pixel::ColorToWord(Pixel::Black, Pixel::White);						//Black text and White background
-	COLOR Yellow = Pixel::ColorToWord(Pixel::Black, Pixel::Yellow);						 //Black text and Yellow background
-	COLOR Blue = Pixel::ColorToWord(Pixel::Black, Pixel::LightBlue);					 //Black text and ligth blue background
-	Window fullScreen("MicroTUI", 0, 0, 0, 0, W_VISIBLE | W_MAXIMIZED);					//Create new full screen window with empty border
-	static Window simpleW("Beta", 20, 9, 50, 23, W_VISIBLE | W_BORDERED);							 //Create window 50x16 with border.
-	GroupBox descr("Desription", 1, 1, 45, 6);												//Create group box
-	GroupBox prgs("Progress Bar", 1, 8, 45, 8);												//Create group box
-	Label lDescr("This is beta test MicroTUI v0.3.752-beta9 developed by KaYonUA.\n\
-											vk.com/kayonua", 3, 3, 42, 3, true);//Create multiline label
+
+	COLOR Grey = Pixel::ColorToWord(Pixel::Black, Pixel::LightGray);					
+	COLOR dGrey = Pixel::ColorToWord(Pixel::Black, Pixel::DarkGray);
+	COLOR Green = Pixel::ColorToWord(Pixel::Black, Pixel::Green);
+	COLOR White = Pixel::ColorToWord(Pixel::Black, Pixel::White);
+	COLOR Yellow = Pixel::ColorToWord(Pixel::Black, Pixel::Yellow);	
+	COLOR Blue = Pixel::ColorToWord(Pixel::Black, Pixel::LightBlue);		
+	COLOR Red = Pixel::ColorToWord(Pixel::Black, Pixel::LightRed);
+
+	Window fullScreen("MicroTUI", 0, 0, gui->Width(), gui->Height(), W_VISIBLE | W_FIXED);			
+	static Window simpleW("Beta", 16, 2, 50, 23, W_VISIBLE | W_BORDERED);							 
+	static Window simple("Exit", gui->Width() / 2 - 25, gui->Height() / 2 - 11, 45,15, W_BORDERED);
+	GroupBox descr("Desription", 1, 1, 45, 6);												
+	GroupBox prgs("Progress Bar", 1, 8, 45, 8);												
+	Label lDescr("This is beta test MicroTUI v0.3.752-beta8 developed by KaYonUA.\n\
+										vk.com/kayonua", 3, 3, 42, 3, true);
+	Label confirm("Vu deystvitelno hotite viyti?", 8, 5, 30, 1, false);
 	ProgressBar prgbar(3, 10, 37, 3);														//Create label
 	ProgressBar prgbar2(3, 14, 37, 1);		//Create label
 	Button btn("Button", 32, 17,12,3, []()->void{
-		//simpleW.MoveWindow(20, 25);
-		buttonPressed = true;
 	});
+	Button btn2("Yes", 27, 10, 12, 3, []()->void{
+		exit(0);
+	});
+	Button btn3("No", 5, 10, 12, 3, []()->void{
+		simple.setFlags(W_BORDERED);
+	});
+	Button btn4("Exit Program", gui->Width() - 20, gui->Height() - 5, 16, 3, []()->void{
+		simple.setFlags(W_VISIBLE | W_BORDERED);
+	});
+	btn4.setBackgroundColor(Color::Pixel::White);
+	btn4.setTextColor(Color::Pixel::LightRed);
 
 	string procents = "0%"; char temp_n[5]; int _i_num = 0;
 	Label procnt(&procents, 41, 12, 0, 0, false);
 
 	static Mouse mou;
 
-	gui->BackgroundColor = Color::_Transparent;										//Set background color to transparent (Black).
-	fullScreen.WindowBackground = White;												//Set Window background color to White.
-	lDescr.L_colr = Color::_Transparent;												//Set Label background color to transparent.
-	prgbar._bg_Color = Yellow;															//Set Progressbar background color to Yellow
-	prgbar._def_Color = Blue;															//Set Progressbar line color to Blue
+	gui->BackgroundColor = Color::_Transparent;	
+	fullScreen.WindowBackground = White;
+	lDescr.L_colr = Color::_Transparent;
+	prgbar._bg_Color = Yellow;		
+	prgbar._def_Color = Blue;
 
 
 
@@ -68,59 +84,23 @@ int main()
 	simpleW.AddWidget(&prgbar2);
 	simpleW.AddWidget(&procnt);
 	simpleW.AddWidget(&PrAnyK);
+	simple.AddWidget(&btn2);
+	simple.AddWidget(&btn3);
+	simple.AddWidget(&confirm);
+
+	fullScreen.AddWidget(&btn4);
 
 	/*Adding windows to screen*/
 	gui->AddWindow(&fullScreen);
 	gui->AddWindow(&simpleW);
-
+	gui->AddWindow(&simple);
 	gui->SetMouse(&mou);
+	gui->MouseCursor([](BYTE byt, COORD cord)->void{}, GetStdHandle(STD_INPUT_HANDLE));
 
-	gui->MouseCursor([](BYTE byt, COORD cord)->void{
-		//static char *temp;
-		char temp[3];
-		switch (byt)
-		{
-		case MOUSE_RBCLICKED_:
-			er = "MOUSE_RBCLICKED_ ";
-			gui->Click(cord.X, cord.Y);
-			break;
-		case MOUSE_LBCLICKED_:
-			er = "MOUSE_LBCLICKED_";
-			break;
-		case MOUSE_BRELEAZED_:
-			er = "MOUSE_BRELEAZED_";
-			break;
-		case MOUSE_DCLICKED_:
-			er = "MOUSE_DCLICKED_";
-			break;
-		case MOUSE_WHEELED_:
-			er = "MOUSE_WHEELED_";
-			break;
-		case MOUSE_MOVED_:
-			er = "MOUSE_MOVED_";
-			mou.MoveCursor(cord.X, cord.Y);
-			break;
-		default:
-			break;
-		}
-		er += _itoa(cord.X, temp, 10);
-		er += "x";
-		er += _itoa(cord.Y, temp, 10);
-	}, GetStdHandle(STD_INPUT_HANDLE));
-
-	/*Updating (Render in buffer) and Show on screen*/
-	while (!buttonPressed)
-	{
-		//_mutx.lock();
+	while (!buttonPressed){
 		gui->UpdateWindow();
-		//_mutx.unlock();
 		gui->ShowWindow();
-		Sleep(50);
 	}
-
-	//getch();
-
-	/*Show how work Progress bars and dynamic labels*/
 	while(_i_num++ < 100)
 	{
 		itoa(_i_num, temp_n, 10);
@@ -134,4 +114,5 @@ int main()
 	}
 	delete gui;
 	getch();
+	return 0;
 }

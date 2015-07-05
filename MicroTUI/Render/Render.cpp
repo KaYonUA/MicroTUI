@@ -25,7 +25,7 @@ namespace MicroTUI
 				if (ScrBuff->PixelChanged(width, height))
 				{
 					curs.Print(width, height, ScrBuff->Get(SB_NEWBUFFER, width, height));
-					//Sleep(50);
+					//Sleep(1);
 				}
 
 		}

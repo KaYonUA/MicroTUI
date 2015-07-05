@@ -6,6 +6,8 @@ namespace MicroTUI
 	{
 		Widget::Widget(int xCoord, int yCoord, int WidthWidget, int HeightWidget,const char * str)
 		{
+			backgroundColor = Color::Pixel::LightGray;
+			textColor = Color::Pixel::Black;
 			WidgetCoord.X = xCoord;
 			WidgetCoord.Y = yCoord;
 			WidgetSize.width = WidthWidget;
@@ -27,6 +29,14 @@ namespace MicroTUI
 		{
 			WidgetSize.width = WidthWidget;
 			WidgetSize.height = HeightWidget;
+		}
+
+		void Widget::setBackgroundColor(Color::Pixel::ConsoleColor _color){
+			backgroundColor = _color;
+		}
+
+		void Widget::setTextColor(Color::Pixel::ConsoleColor _color){
+			textColor = _color;
 		}
 	}
 }

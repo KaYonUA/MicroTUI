@@ -25,7 +25,9 @@ namespace MicroTUI
 			TUI();
 			void AddWindow(Window *window);
 			void SetMouse(Mouse *mouse);
-			void Click(int x, int y);
+			void ClickMouse(int x, int y, bool _double);
+			void ReleaseMouse(int x, int y);
+			void moveMouse(int x, int y);
 			void UpdateWindow();
 			void ShowWindow();
 			void _GetMessage();
@@ -38,6 +40,7 @@ namespace MicroTUI
 			Render _Rendr;
 			ScreenBuffer __Screenbuffer;
 			std::vector<Window*> windowsList;
+			Window* m_clickedWindow;
 			Mouse *mouse;
 		};
 	}

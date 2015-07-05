@@ -15,6 +15,7 @@ namespace MicroTUI
 		const BYTE W_SHADOW = 4;
 		const BYTE W_VISIBLE = 8;
 		const BYTE W_ONTOP = 16;
+		const BYTE W_FIXED = 32;
 
 
 		inline bool BitChecked(BYTE _pws_mem, unsigned _b_count){ return (_pws_mem & (1 << _b_count)) != 0; }
@@ -26,9 +27,14 @@ namespace MicroTUI
 			void MoveWindow(int xCoord, int yCoord);
 			void ResizeWindow(int WidthWindow, int HeightWindow);
 			void AddWidget(Widget *widget);
-			void _h_lclicked(int lx, int ly);
+
+			void _h_lclicked(int lx, int ly, bool _double);
+			void _h_lreleased(int lx, int ly);
+			void _h_lmoved(int lx, int ly);
+
 			bool onFocus();
 			void onFocus(bool Focused);
+			void setFlags(BYTE param);
 			void _Render_func(ScreenBuffer *buffer);
 
 			mSIZE WindowSize;
@@ -36,12 +42,15 @@ namespace MicroTUI
 			COLOR WindowBackground;
 			COLOR Border;
 		private:
-			
+			bool Draging;
+			COORD dragStart;
 			COLOR WinShadow;
 			std::vector<Widget*> childWidgets;
+			Widget* m_clickedWidget;
 			char * WindowTitle;
 
 			/*Window flags*/
+			bool _f_fixed;
 			bool _f_onFocus;
 			bool _f_border;
 			bool _f_maximiz;

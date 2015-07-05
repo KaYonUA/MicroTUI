@@ -12,15 +12,15 @@ namespace MicroTUI
 		{
 		public:
 			Button(std::string str, int xCoord, int yCoord, int WidthWidget, int HeightWidget, void(*hndlr)(void))
-				: Widget(xCoord, yCoord, WidthWidget, HeightWidget, str.c_str()), 
-				bgL_colr(Color::Pixel::ColorToWord(Color::Pixel::LightBlue, Color::Pixel::LightBlue)),
-				tx_colr(Color::Pixel::ColorToWord(Color::Pixel::Black, Color::Pixel::LightBlue)), _f_ptr(hndlr){}
+				: Widget(xCoord, yCoord, WidthWidget, HeightWidget, str.c_str()), buttonPushed(false),
+				pBackgroundColor(Color::Pixel::DarkGray), _f_ptr(hndlr){}
 			virtual void _Render_func(ScreenBuffer *buffer, COORD _w_Coord);
-			void Click();
+			void mouseClick();
+			void mouseRelease();
 		private:
 			void(*_f_ptr)(void);
-			COLOR bgL_colr;
-			COLOR tx_colr;
+			bool buttonPushed;
+			Color::Pixel::ConsoleColor pBackgroundColor;
 		};
 	}
 }

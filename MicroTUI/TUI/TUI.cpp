@@ -52,7 +52,7 @@ namespace MicroTUI
 
 	void TUI::UpdateWindow()
 	{
-		__Screenbuffer->Fill(Pixel::pixelGen(' ', textColor, backgroundColor));
+		//__Screenbuffer->Fill(Pixel::pixelGen(' ', textColor, backgroundColor));
 		if (!windowsList.empty()){
 			for (int i = 0; i < (int)windowsList.size(); i++)
 				windowsList[i]->_Render_func(__Screenbuffer);
@@ -147,5 +147,9 @@ namespace MicroTUI
 	void TUI::resizeConsole(int width, int height){
 		SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), { width, height + 3 });
 		MoveWindow(FindWindowA(NULL, consoleTitle), 1, 1, 3000, height * 12, true);
+	}
+
+	void TUI::alphaChannel(bool alpha){
+		__Screenbuffer->alphaChannel = alpha;
 	}
 }

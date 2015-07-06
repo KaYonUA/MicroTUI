@@ -4,6 +4,7 @@
 namespace MicroTUI
 {
 	ScreenBuffer::ScreenBuffer(){
+		alphaChannel = false;
 		mSIZE size = _GetScreenSize();
 		Resize(size.width, size.height);
 	}
@@ -11,20 +12,24 @@ namespace MicroTUI
 	void ScreenBuffer::Set(WORD _SwBuff,int x, int y, Pixel attrib){
 		switch (_SwBuff){
 		case SB_NEWBUFFER:
-			ConsoleColor newTextColor;
-			ConsoleColor newBackgroundColor;
-			if (Pixel::wordToTextColor(attrib.pixelColor) == cTransparent)
-				newTextColor = Pixel::wordToTextColor(NewBuffer.Get(x, y).pixelColor);
-			else
-				newTextColor = Pixel::wordToTextColor(attrib.pixelColor);
-			if (Pixel::wordToBackgroundColor(attrib.pixelColor) == cTransparent){
-				if (attrib.pixelLetter == ' ')
-					attrib.pixelLetter = NewBuffer.Get(x, y).pixelLetter;
-				newBackgroundColor = Pixel::wordToBackgroundColor(NewBuffer.Get(x, y).pixelColor);
+			if (alphaChannel){
+				ConsoleColor newTextColor;
+				ConsoleColor newBackgroundColor;
+				if (Pixel::wordToTextColor(attrib.pixelColor) == cTransparent)
+					newTextColor = Pixel::wordToTextColor(NewBuffer.Get(x, y).pixelColor);
+				else
+					newTextColor = Pixel::wordToTextColor(attrib.pixelColor);
+				if (Pixel::wordToBackgroundColor(attrib.pixelColor) == cTransparent){
+					if (attrib.pixelLetter == ' '){
+						attrib.pixelLetter = NewBuffer.Get(x, y).pixelLetter;
+						newTextColor = Pixel::wordToTextColor(NewBuffer.Get(x, y).pixelColor);
+					}
+					newBackgroundColor = Pixel::wordToBackgroundColor(NewBuffer.Get(x, y).pixelColor);
+				}
+				else
+					newBackgroundColor = Pixel::wordToBackgroundColor(attrib.pixelColor);
+				attrib.pixelColor = Pixel::ColorToWord(newTextColor, newBackgroundColor);
 			}
-			else
-				newBackgroundColor = Pixel::wordToBackgroundColor(attrib.pixelColor);
-			attrib.pixelColor = Pixel::ColorToWord(newTextColor, newBackgroundColor);
 			NewBuffer.Set(attrib, x, y);
 			break;
 		case SB_CURRENTBUFFER:

@@ -3,7 +3,7 @@
 namespace MicroTUI
 {
 	Widget::Widget(int xCoord, int yCoord, int WidthWidget, int HeightWidget, const char * str){
-		backgroundColor = cTransparent;
+		backgroundColor = cWhite;
 		textColor = cBlack;
 		WidgetCoord.X = xCoord;
 		WidgetCoord.Y = yCoord;

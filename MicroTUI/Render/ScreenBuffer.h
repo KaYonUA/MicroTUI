@@ -11,26 +11,26 @@
 #define IR_DONTSAVE			0x0104
 #define CGUI_ERROR			0xFFFF
 
-#define HS_LINE				char(0x00C4)
-#define HD_LINE				char(0x00CD)
-#define VS_LINE				char(0x00B3)
-#define VD_LINE				char(0x00BA)
-#define TLS_CORNER			char(0x00DA)
-#define TLD_CORNER			char(0x00C9)
-#define TRS_CORNER			char(0x00BF)
-#define TRD_CORNER			char(0x00BB)
-#define BLS_CORNER			char(0x00C0)
-#define BLD_CORNER			char(0x00C8)
-#define BRS_CORNER			char(0x00D9)
-#define BRD_CORNER			char(0x00BC)
-#define BRDtS_CORNER		char(0x00BD)
-#define BLDtS_CORNER		char(0x00D4)
-#define TRDtS_CORNER		char(0x00B8)
-#define TLDtS_CORNER		char(0x00D6)
-#define BRStD_CORNER		char(0x00BE)
-#define BLStD_CORNER		char(0x00D3)
-#define TRStD_CORNER		char(0x00B7)
-#define TLStD_CORNER		char(0x00D5)
+const char HS_LINE = (char)0x00C4;
+const char HD_LINE = (char)0x00CD;
+const char VS_LINE = (char)0x00B3;
+const char VD_LINE = (char)0x00BA;
+const char TLS_CORNER = (char)0x00DA;
+const char TLD_CORNER = (char)0x00C9;
+const char TRS_CORNER = (char)0x00BF;
+const char TRD_CORNER = (char)0x00BB;
+const char BLS_CORNER = (char)0x00C0;
+const char BLD_CORNER = (char)0x00C8;
+const char BRS_CORNER = (char)0x00D9;
+const char BRD_CORNER = (char)0x00BC;
+const char BRDtS_CORNER = (char)0x00BD;
+const char BLDtS_CORNER = (char)0x00D4;
+const char TRDtS_CORNER = (char)0x00B8;
+const char TLDtS_CORNER = (char)0x00D6;
+const char BRStD_CORNER = (char)0x00BE;
+const char BLStD_CORNER = (char)0x00D3;
+const char TRStD_CORNER = (char)0x00B7;
+const char TLStD_CORNER = (char)0x00D5;
 
 namespace MicroTUI
 {
@@ -63,6 +63,8 @@ namespace MicroTUI
 		void Lable(int x, int y, std::string *str, ConsoleColor text, ConsoleColor background);
 
 		~ScreenBuffer();
+
+		bool alphaChannel;
 	private:
 		COORD ScreenSize;
 		COORD CBuffersSize, NBuffersSize;

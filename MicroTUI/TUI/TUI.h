@@ -34,6 +34,7 @@ namespace MicroTUI
 		void MouseCursor(void(*Hendlr)(BYTE, COORD), HANDLE stdIn);
 		void setTitle(char  * _string);
 		void resizeConsole(int width, int height);
+		void alphaChannel(bool alpha);
 		unsigned short Width();
 		unsigned short Height();
 		ConsoleColor backgroundColor;

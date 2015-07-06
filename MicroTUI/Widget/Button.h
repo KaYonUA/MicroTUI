@@ -19,6 +19,7 @@ namespace MicroTUI
 	private:
 		void(*_f_ptr)(void);
 		bool buttonPushed;
+		bool buttonWork;
 		ConsoleColor pBackgroundColor;
 	};
 }
